@@ -4,9 +4,11 @@ const {
   fromBufferToStringSimd,
   toBufferWithLength,
   toStringWithLength,
+  shareArrayBuffer,
+  shareBuffer,
 } = require('./index')
 
-let cases = [1000, 10000, 100000, 1000000, 10000000, 100000000]
+let cases = [10, 100, 1000, 10000, 100000, 1000000, 10000000, 100000000]
 let str = cases.map((c) => 'a'.repeat(c))
 
 console.log('To Rust')
@@ -44,4 +46,19 @@ for (let i = 0; i < cases.length; i++) {
   console.time(`toStringWithLength: ${len}`)
   toStringWithLength(len)
   console.timeEnd(`toStringWithLength: ${len}`)
+}
+
+console.log('\n\nShare Buffer')
+
+for (let i = 0; i < str.length; i++) {
+  let buf = Buffer.from(str[i])
+  console.log('========== case:', str[i].length, '==========')
+
+  console.time(`shareArrayBuffer: ${str[i].length}`)
+  shareArrayBuffer(buf)
+  console.timeEnd(`shareArrayBuffer: ${str[i].length}`)
+
+  console.time(`shareBuffer: ${str[i].length}`)
+  shareBuffer(buf)
+  console.timeEnd(`shareBuffer: ${str[i].length}`)
 }

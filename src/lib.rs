@@ -1,7 +1,7 @@
 #![deny(clippy::all)]
 
 use criterion::black_box;
-use napi::bindgen_prelude::*;
+use napi::{bindgen_prelude::*, JsArrayBuffer};
 use napi_derive::napi;
 
 #[napi]
@@ -33,4 +33,14 @@ pub fn to_buffer_with_length(len: u32) -> Buffer {
 pub fn to_string_with_length(len: u32) -> String {
   let buf = b"a".repeat(len as usize);
   String::from_utf8(buf).unwrap()
+}
+
+#[napi]
+pub fn share_buffer(buf: Buffer) {
+  let _ = black_box(buf);
+}
+
+#[napi]
+pub fn share_array_buffer(buf: JsArrayBuffer) {
+  let _ = black_box(buf);
 }

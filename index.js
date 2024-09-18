@@ -234,10 +234,20 @@ if (!nativeBinding) {
   throw new Error(`Failed to load native binding`)
 }
 
-const { fromString, fromBufferToString, fromBufferToStringSimd, toBufferWithLength, toStringWithLength } = nativeBinding
+const {
+  fromString,
+  fromBufferToString,
+  fromBufferToStringSimd,
+  toBufferWithLength,
+  toStringWithLength,
+  shareBuffer,
+  shareArrayBuffer,
+} = nativeBinding
 
 module.exports.fromString = fromString
 module.exports.fromBufferToString = fromBufferToString
 module.exports.fromBufferToStringSimd = fromBufferToStringSimd
 module.exports.toBufferWithLength = toBufferWithLength
 module.exports.toStringWithLength = toStringWithLength
+module.exports.shareBuffer = shareBuffer
+module.exports.shareArrayBuffer = shareArrayBuffer

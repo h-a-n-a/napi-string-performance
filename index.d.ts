@@ -8,3 +8,5 @@ export function fromBufferToString(input: Buffer): void
 export function fromBufferToStringSimd(input: Buffer): void
 export function toBufferWithLength(len: number): Buffer
 export function toStringWithLength(len: number): string
+export function shareBuffer(buf: Buffer): void
+export function shareArrayBuffer(buf: JsArrayBuffer): void
